@@ -42,6 +42,7 @@ jobs:
         env:
           GIT_REPO_NAME: Jenkins-Zero-To-Hero
           GIT_USER_NAME: ashaf3
+          GIT_TOKEN: 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
         run: |
           cd java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests
           sed -i "s/replaceImageTag/${{ github.run_number }}/g" deployment.yml
