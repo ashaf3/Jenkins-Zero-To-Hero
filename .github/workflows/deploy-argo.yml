@@ -1,0 +1,21 @@
+name: Deploy with ArgoCD
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Push changes
+        run: |
+          git config --global user.name "AshDeploy Argo"
+          git config --global user.email "ashumysterious007@gmail.com"
+          git add .
+          git commit -m "Update manifest files [skip ci]"
+          git push
