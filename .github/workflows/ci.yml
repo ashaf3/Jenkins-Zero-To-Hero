@@ -51,3 +51,7 @@ jobs:
           git add deployment.yml
           git commit -m "Update deployment image to version ${{ github.run_number }}"
           git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ env.GIT_USER_NAME }}/${{ env.GIT_REPO_NAME }} HEAD:main 
+          
+      - name: Set deployment status
+        if: ${{ steps.update_deployment.outcome == 'success' }}
+        run: echo 'Deployment succeeded'
