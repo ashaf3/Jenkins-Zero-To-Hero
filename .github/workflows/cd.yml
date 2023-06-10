@@ -19,10 +19,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Push changes
+      - name: Deploy with ArgoCD
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: |
-          git config --global user.name "AshDeploy Argo"
-          git config --global user.email "ashumysterious007@gmail.com"
-          git add .
-          git commit -m "Update manifest files [skip ci]"
-          git push
+          # Add deployment steps for ArgoCD here
+        
+     
+      
