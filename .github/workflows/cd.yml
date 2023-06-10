@@ -1,9 +1,6 @@
 name: Deploy with ArgoCD
 
 on:
-  push:
-    branches:
-      - main  # Adjust the branch name as needed
   workflow_run:
     workflows:
       - "Docker Image CI"
