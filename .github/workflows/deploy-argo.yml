@@ -6,12 +6,10 @@ on:
       - main  # Adjust the branch name as needed
   workflow_run:
     workflows:
-      - "CI Process Workflow"
+      - "Docker Image CI"
     types:
       - completed
-  repository_dispatch:
-    types:
-      - manifest_change
+      - success
 
 jobs:
   deploy:
