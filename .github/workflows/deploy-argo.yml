@@ -1,8 +1,17 @@
 name: Deploy with ArgoCD
+
 on:
   push:
     branches:
       - main  # Adjust the branch name as needed
+  workflow_run:
+    workflows:
+      - "CI Process Workflow"
+    types:
+      - completed
+  repository_dispatch:
+    types:
+      - manifest_change
 
 jobs:
   deploy:
