@@ -19,7 +19,48 @@ jobs:
       - name: Deploy with ArgoCD
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: |
-          # Add deployment steps for ArgoCD here
+    # Install Argo CD CLI
+    #curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-darwin-amd64
+    #chmod +x /usr/local/bin/argocd
+
+    # Set Argo CD server details
+    export ARGOCD_SERVER=localhost:8080
+    export ARGOCD_USERNAME=admin
+    export ARGOCD_PASSWORD=yk9mrHono1cAhB7M
+
+    # Log in to Argo CD
+    argocd login $ARGOCD_SERVER --username $ARGOCD_USERNAME --password $ARGOCD_PASSWORD --insecure
+
+    # Set application details
+    export APP_NAME=my-auto-deploy-workflow
+    export APP_PROJECT=default
+    export APP_REPO_URL=https://github.com/ashaf3/Jenkins-Zero-To-Hero.git
+    export APP_MANIFEST_PATH=java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests
+
+    # Check if the application exists
+    if argocd app get $APP_NAME > /dev/null 2>&1; then
+      # Application exists, update it
+      argocd app set $APP_NAME \
+        --repo $APP_REPO_URL \
+        --path $APP_MANIFEST_PATH \
+        --dest-server $ARGOCD_SERVER \
+        --dest-namespace default \
+        --project $APP_PROJECT \
+        --sync-policy automated \
+        --self-heal \
+        --auto-prune
+    else
+      # Application does not exist, create it
+      argocd app create $APP_NAME \
+        --repo $APP_REPO_URL \
+        --path $APP_MANIFEST_PATH \
+        --dest-server $ARGOCD_SERVER \
+        --dest-namespace default \
+        --project $APP_PROJECT \
+        --sync-policy automated \
+        --self-heal \
+        --auto-prune
+    fi
         
      
       
