@@ -20,8 +20,8 @@ jobs:
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: |
           # Install Argo CD CLI
-          #curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-darwin-amd64
-          #chmod +x /usr/local/bin/argocd
+          curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-darwin-amd64
+          chmod +x /usr/local/bin/argocd
 
           # Set Argo CD server details
           export ARGOCD_SERVER=localhost:8080
