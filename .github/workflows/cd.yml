@@ -24,7 +24,7 @@ jobs:
           chmod +x /usr/local/bin/argocd
 
           # Set Argo CD server details
-          export ARGOCD_SERVER=https://1f7e-142-198-82-218.ngrok-free.app:443 # replace with your ArgoCD server address
+          export ARGOCD_SERVER=1f7e-142-198-82-218.ngrok-free.app:443 # replace with your ArgoCD server address
           export ARGOCD_USERNAME=admin
           export ARGOCD_PASSWORD=${{ secrets.ARGOCD_PASSWORD }} # replace with your GitHub secret
 
