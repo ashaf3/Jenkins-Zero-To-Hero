@@ -35,14 +35,14 @@ jobs:
         run: |
           cd java-maven-sonar-argocd-helm-k8s/spring-boot-app
           docker build -t ${{ env.DOCKER_IMAGE }} .
-          echo "%n&dd*w9&cAnfZ@" | docker login --username "ash7c" --password-stdin
+          echo ${{ env.DOCKER_PASSWORD }} | docker login --username "ash7c" --password-stdin
           docker push ${{ env.DOCKER_IMAGE }}
 
       - name: Update Deployment File
         env:
           GIT_REPO_NAME: Jenkins-Zero-To-Hero
           GIT_USER_NAME: ashaf3
-          #GITHUB_TOKEN: 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
+          
         run: |
           cd java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests
           sed -i "s/replaceImageTag/${{ github.run_number }}/g" deployment.yml
