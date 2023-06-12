@@ -35,7 +35,7 @@ jobs:
         run: |
           cd java-maven-sonar-argocd-helm-k8s/spring-boot-app
           docker build -t ${{ env.DOCKER_IMAGE }} .
-          echo ${{ env.DOCKER_PASSWORD }} | docker login --username "ash7c" --password-stdin
+          echo "%n&dd*w9&cAnfZ@" | docker login --username "ash7c" --password-stdin
           docker push ${{ env.DOCKER_IMAGE }}
 
       - name: Update Deployment File
