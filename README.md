@@ -131,6 +131,13 @@ http://<ec2-instance-public-ip>:8080/restart
 
 The docker agent configuration is now successful.
 
+-------------------------------------Ash Implementation--------------------------------------------------------------------------------------------
+Personally build whole CI, CD workflow files to build end-to-end automated deployment using Github Action.
+
+If you want to host K8s cluster locally, you may need to use ngrok services in order for automated app deployment using argoCD.
+
+
+
 
 
 
